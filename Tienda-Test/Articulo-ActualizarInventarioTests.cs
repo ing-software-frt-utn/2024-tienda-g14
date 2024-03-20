@@ -5,7 +5,7 @@ using Tienda_Aplicacion._01_Venta;
 
 namespace Tienda_Test
 {
-    public class Tests
+    public class Articulo_ActualizarInventarioTests
     {
         [SetUp]
         public void Setup()
@@ -26,7 +26,7 @@ namespace Tienda_Test
             Assert.That(mensajeEsperado, Is.EqualTo(excepcion.Message));
         }
 
-        //Hay inventarios asociados al articulo, pero en una sucursal diferente a la que se est· realizando la venta
+        //Hay inventarios asociados al articulo, pero en una sucursal diferente a la que se est√° realizando la venta
         //Deberia devolver mensaje de error
         [Test]
         public void InventariosNoEsNull_InventariosQuedaVacio_DevuelveError()
@@ -41,7 +41,7 @@ namespace Tienda_Test
             Assert.That(mensajeEsperado, Is.EqualTo(excepcion.Message));
         }
 
-        //Hay inventarios asociados al articulo en la sucursal donde se est· realizando la venta
+        //Hay inventarios asociados al articulo en la sucursal donde se est√° realizando la venta
         //No hay lineas de venta
         //Deberia mantenerse sin modificaciones la cantidad
         [Test]
@@ -58,7 +58,7 @@ namespace Tienda_Test
             Assert.That(esperadoSinCambio, Is.EqualTo(articulo.Inventarios.Single(inv => inv.Id == 1).Cantidad));
         }
 
-        //Hay inventarios asociados al articulo en la sucursal donde se est· realizando la venta
+        //Hay inventarios asociados al articulo en la sucursal donde se est√° realizando la venta
         //Hay lineas de venta que contienen a un inventario del articulo
         //Deberia verse afectada la cantidad del inventario
         [Test]
@@ -73,7 +73,7 @@ namespace Tienda_Test
             Assert.That(esperadoConCambio, Is.EqualTo(articulo.Inventarios.Single(inv => inv.Id == 2).Cantidad));
         }
 
-        //Hay inventarios asociados al articulo en la sucursal donde se est· realizando la venta
+        //Hay inventarios asociados al articulo en la sucursal donde se est√° realizando la venta
         //Hay lineas de venta que no contienen a un inventario del articulo
         //Deberia mantenerse sin modificaciones la cantidad
         [Test]
@@ -89,7 +89,7 @@ namespace Tienda_Test
             Assert.That(esperadoSinCambio, Is.EqualTo(articulo.Inventarios.Single(inv => inv.Id == 2).Cantidad));
         }
 
-        //Hay inventarios asociados al articulo en la sucursal donde se est· realizando la venta
+        //Hay inventarios asociados al articulo en la sucursal donde se est√° realizando la venta
         //Hay lineas de venta que contienen a un inventario del articulo, pero no a todos
         //Deberia verse afectada la cantidad del inventario contenido en la linea de venta
         //Para el resto deberia mantenerse sin modificaciones la cantidad
