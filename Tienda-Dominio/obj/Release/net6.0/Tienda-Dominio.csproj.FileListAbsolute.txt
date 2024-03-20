@@ -1,0 +1,13 @@
+D:\Proyectos VS\Tienda\Tienda-Dominio\bin\Release\net6.0\Tienda-Dominio.deps.json
+D:\Proyectos VS\Tienda\Tienda-Dominio\bin\Release\net6.0\Tienda-Dominio.dll
+D:\Proyectos VS\Tienda\Tienda-Dominio\bin\Release\net6.0\Tienda-Dominio.pdb
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.csproj.AssemblyReference.cache
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.AssemblyInfoInputs.cache
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.AssemblyInfo.cs
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.csproj.CoreCompileInputs.cache
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.sourcelink.json
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.dll
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\refint\Tienda-Dominio.dll
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\Tienda-Dominio.pdb
+D:\Proyectos VS\Tienda\Tienda-Dominio\obj\Release\net6.0\ref\Tienda-Dominio.dll

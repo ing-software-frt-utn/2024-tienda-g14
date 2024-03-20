@@ -1,0 +1,237 @@
+﻿@using Tienda_Dominio._01_Clases
+@{
+    ViewBag.Title = "Venta";
+}
+
+<main>
+    @if (ViewBag.Venta != null)
+    {
+        <div class="row d-flex">
+            <div id="Cliente" class="col-5 d-block">
+                    <div id="DatosCliente" class="d-flex">
+                        <span class="fw-bold text-danger m-2">Cliente: @ViewBag.Cliente </span>
+                        @if (ViewBag.formCliente == null || ViewBag.formCliente == false)
+                        {
+                        <form action="/Venta/MostrarFormCliente" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="submit" class="btn btn-sm btn-primary m-1" value="Cambiar" />
+                        </form>
+                        }
+                    </div>
+                    <div id="Comprobante">
+                        <span class="fw-bold text-danger m-2">Comprobante: @ViewBag.Comprobante </span>
+                    </div>
+                    @if (ViewBag.formCliente == true)
+                    {
+                        <div id="CambiarCliente" class="d-block">   
+                            <div id="FormularioCliente" class="d-flex">
+                                <form action="/Venta/CambiarCliente" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <div class="input-group-sm d-flex">
+                                        <span class="input-group-text">Doc. de Cliente</span>
+                                        <input type="text" name="doc" class="form-control" placeholder="Ingrese el Documento del cliente" required />
+                                        <input type="submit" class="btn btn-primary w-25 mx-auto" value="Buscar" />
+                                    </div>
+                                </form>
+                                <form action="/Venta/CancelarCambioCliente" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <div class="input-group-sm d-flex">
+                                        <input type="submit" class="btn btn-danger w-100 mx-auto" value="Cancelar" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                @if (!String.IsNullOrEmpty(ViewBag.MensajeClienteError))
+                                {
+                                    <p class="text-danger text-center">@ViewBag.MensajeClienteError</p>
+                                }
+                            </div>
+                        </div>
+                    }
+            </div>
+            <div id="CancelarVenta" class="col-7 text-end">
+                <form action="/Venta/CancelarVenta" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="submit" class="btn btn-danger w-15 mx-auto" value="Cancelar venta" />
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div id="Inventarios" class="col-4 mt-3">
+                <div id="BuscadorInventarios">
+                    <form action="/Venta/BuscaProductos" method="post">
+                        @Html.AntiForgeryToken()
+                        <div class="input-group justify-content-center">
+                            <span class="input-group-text">Código de producto</span>
+                            <input autofocus type="text" name="codigo" class="form-control" placeholder="Ingrese un código" value="@ViewBag.ArtCodigo" required />
+                            <input type="submit" value="Enviar" class="btn btn-warning" />
+                        </div>
+                    </form>
+                    @if (!String.IsNullOrEmpty(ViewBag.MensajeError))
+                    {
+                        <p class="text-danger text-center">@ViewBag.MensajeError</p>
+                    }
+                </div>
+                @if (ViewBag.MostrarArticulo != null)
+                {
+                    <div id="DetalleInventarios">
+                        <div id="DatosArticulo" class="text-center">
+                            <span><b>Código:</b>  @ViewBag.ArtCodigo</span><br>
+                            <span><b>Descripción:</b> @ViewBag.ArtDescripcion </span><br>
+                            <span><b>Tipo de Talle:</b> @ViewBag.ArtTipoTalle </span><br>
+                            <span class="text-success"><b>Precio: $ @ViewBag.ArtPrecio.ToString("#,##0.00")</b></span><br>
+                        </div>
+                        @if (ViewBag.Inventarios != null)
+                        {
+                            <div id="InventariosArticulo" class="mx-auto">
+                                <table class="table fs-6">
+                                    <thead>
+                                        <tr class="fw-bold text-center">
+                                            <td>Color</td>
+                                            <td>Talle</td>
+                                            <td>Disponible</td>
+                                            <td>Cantidad</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (Inventario inv in ViewBag.Inventarios)
+                                        {
+                                            <form action="/Venta/AgregarProducto" method="post">
+                                                @Html.AntiForgeryToken()
+                                            <tr class="fw-bold text-center">
+                                                <td>@inv.Color.Nombre</td>
+                                                <td>@inv.Talle.Descripcion</td>
+                                                <td>@inv.Cantidad</td>
+                                                <td>
+                                                    <input id="cantidad" type="number" min="1" max="@inv.Cantidad" name="cantidad" class="form-control-sm" value="1" />
+                                                    <input type="hidden" name="producto" value="@inv.Id" />
+                                                </td>
+                                                <td><input type="submit" value="Agregar" class="btn-sm btn-warning" /></td>
+                                            </tr>
+                                            </form>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <div id="Venta" class="col-8 d-flex">
+                <div class="col">
+                    @if (ViewBag.CantidadTotal > 0)
+                    {
+                        <table class="table" style="font-size:90%;">
+                            <thead>
+                                <tr class="fw-bold text-center">
+                                    <td class="px-0">Producto</td>
+                                    <td class="px-0">Descripción</td>
+                                    <td class="px-0">Color</td>
+                                    <td class="px-0">Talle</td>
+                                    <td class="px-0">Neto Gravado</td>
+                                    <td class="px-0">% IVA</td>
+                                    <td class="px-0">IVA</td>
+                                    <td class="px-0">Precio</td>
+                                    <td class="px-0">Cantidad</td>
+                                    <td class="px-0">Subtotal</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Linea_Venta lv in ViewBag.LineasVentas)
+                                {
+                                    <tr class="fw-bold text-center">
+                                        <td>@lv.Inventario.Articulo.Codigo</td>
+                                        <td>@lv.Inventario.Articulo.Descripcion</td>
+                                        <td>@lv.Inventario.Color.Nombre</td>
+                                        <td>@lv.Inventario.Talle.Descripcion</td>
+                                        <td>$ @lv.Neto_Gravado.ToString("#,##0.00")</td>
+                                        <td>@lv.Porc_Iva.ToString("#,##0.00") %</td>
+                                        <td>$ @lv.Monto_Iva.ToString("#,##0.00")</td>
+                                        <td>$ @lv.Precio.ToString("#,##0.00")</td>
+                                        <td class="d-flex">
+                                            <form action="/Venta/RestarCantidad" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                <input type="submit" class="btn-sm btn-danger" value="-" />
+                                                <input type="hidden" name="item" value="@lv.Item_num" />
+                                            </form>
+                                            <span class="m-2">@lv.Cantidad</span>
+                                            <form action="/Venta/SumarCantidad" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <input type="submit" class="btn-sm btn-success" value="+" />
+                                                <input type="hidden" name="item" value="@lv.Item_num" />
+                                            </form>
+                                        </td>
+                                        <td>$ @((lv.Cantidad * lv.Precio).ToString("#,##0.00"))</td>
+                                        <td>
+                                            <form action="/Venta/EliminarLineaVenta" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <input type="submit" class="btn-sm btn-danger" value="Quitar"/>
+                                                <input type="hidden" name="item" value="@lv.Item_num" />
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div id="FinalVenta" class="d-flex">
+                            <div class="col">
+                                <h3 class="text-center">Total: $ @ViewBag.MontoTotal.ToString("#,##0.00")</h3>
+                                <h4 class="text-center">Cantidad de Productos: @ViewBag.CantidadTotal</h4>
+                            </div>
+                            <div class="col">
+                            <form action="/Venta/FinalizarVenta" method="post">
+                                @Html.AntiForgeryToken()
+                                <div id="ChecksMetodosPago" class="row d-block">
+                                    <div class="col-5 mx-auto form-check">
+                                        <input type="radio" class="form-check-input" id="efectivo" name="medioPagoId" value="1" checked="@ViewBag.Radio1" onchange="location.href = '/Venta/CambiarMetodo?metodoId=1';">
+                                        <label class="form-check-label" for="efectivo">Efectivo</label>
+                                    </div>
+                                    <div class="col-5 mx-auto form-check">
+                                        <label class="form-check-label" for="tarjeta">Tarjeta</label>
+                                        <input type="radio" class="form-check-input" id="tarjeta" name="medioPagoId" value="2" checked="@ViewBag.Radio2" onchange="location.href = '/Venta/CambiarMetodo?metodoId=2';">
+                                    </div>
+                                </div>
+                                    @if (ViewBag.Radio2 != null)
+                                    {
+                                        <div class="row my-2">
+                                            <div class="col">
+                                                <label class="form-check-label" for="numeroTarjeta">Numero de Tarjeta</label>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{16}" name="numeroTarjeta" class="form-control" title="16 DIGITOS" placeholder="Ingrese los 16 numeros de la tarjeta" required />
+                                                <label class="form-check-label" pattern="[A-Za-z]" for="nombreTitular">Nombre del Titular</label>
+                                                <input type="text" name="nombreTitular" class="form-control" placeholder="Ingrese el nombre del titular" required />
+                                                <label class="form-check-label" for="dniTitular">DNI del Titular</label>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{1,8}" name="dniTitular" class="form-control" placeholder="Ingrese el DNI del titular" required />
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-check-label" for="mesVencimiento">Mes de Vencimiento</label>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{2}" name="mesVencimiento" class="form-control" title="2 DIGITOS" placeholder="MM" required />
+                                                <label class="form-check-label" for="añoVencimiento">Año de Vencimiento</label>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{2}" name="anioVencimiento" class="form-control" title="2 DIGITOS" placeholder="AA" required />
+                                                <label class="form-check-label" for="codSeguridad">Codigo de Seguridad</label>
+                                                <input type="text" inputmode="numeric" pattern="[0-9]{3}" name="codSeguridad" class="form-control" title="3 DIGITOS" required />
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="row mt-2">
+                                        <input type="submit" class="btn btn-warning col-5 mx-auto" value="Finalizar venta" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <form action="/Venta/IniciarVenta" method="post">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input type="submit" value="Iniciar Nueva Venta" class="btn btn-warning w-15" />
+                </div>
+            </form>
+        </div>
+    }
+</main>

@@ -1,0 +1,16 @@
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\bin\Release\net6.0\Tienda-Aplicacion.deps.json
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\bin\Release\net6.0\Tienda-Aplicacion.dll
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\bin\Release\net6.0\Tienda-Aplicacion.pdb
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\bin\Release\net6.0\Tienda-Dominio.dll
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\bin\Release\net6.0\Tienda-Dominio.pdb
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.csproj.AssemblyReference.cache
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.AssemblyInfoInputs.cache
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.AssemblyInfo.cs
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.csproj.CoreCompileInputs.cache
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.sourcelink.json
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-A.403C009E.Up2Date
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.dll
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\refint\Tienda-Aplicacion.dll
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\Tienda-Aplicacion.pdb
+D:\Proyectos VS\Tienda\Tienda-Aplicacion\obj\Release\net6.0\ref\Tienda-Aplicacion.dll

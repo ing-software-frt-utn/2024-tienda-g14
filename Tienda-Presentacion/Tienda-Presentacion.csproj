@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-Tienda_Presentacion-412754ec-92d0-4eeb-a82a-0b9c76490bdd</UserSecretsId>
+    <RootNamespace>Tienda_Presentacion</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.24" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.27" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.27" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.15" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tienda-Aplicacion\Tienda-Aplicacion.csproj" />
+    <ProjectReference Include="..\Tienda-Datos\Tienda-InfraestructuraDatos.csproj" />
+    <ProjectReference Include="..\Tienda-Servicios\Tienda-Servicios.csproj" />
+  </ItemGroup>
+
+</Project>

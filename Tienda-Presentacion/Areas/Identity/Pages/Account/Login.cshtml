@@ -1,0 +1,45 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Ingreso de Usuarios";
+}
+
+
+<div class="cuadro-log container col-8 col-md-3 mt-5 rounded shadow">
+    <div class="row justify-content-center">
+        <div class="col p-3 rounded text-center">
+            <h2 class="fw-bold text-center pt-5">Bienvenido</h2>
+            <h3 class="fw-bold text-center pb-5">Sucursal Centro</h3>
+            <form id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control mx-auto mb-4" autocomplete="username" aria-required="true" />
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input asp-for="Input.Password" class="form-control mx-auto mb-4" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Input.Password" class="form-label"></label>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="btn btn-primary">Ingresar!</button>
+                </div>
+                <div>
+                    <p class="my-3">
+                        <!--<a id="forgot-password" asp-page="./ForgotPassword" disabled>Olvidé mi contraseña</a>-->
+                    <p>Olvidé mi contraseña</p>
+                    </p>
+                    <p class="my-3">
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrarme</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
